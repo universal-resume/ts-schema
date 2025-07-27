@@ -1,17 +1,24 @@
-import { Schema } from "effect"
-import { Date, Url } from "../validator"
+import {
+	Array as ArraySchema,
+	NonEmptyString,
+	optional,
+	Struct,
+} from "effect/Schema";
 
-const { Struct, optional, NonEmptyString } = Schema
+import { Validator } from "../validator";
 
 export namespace Publication {
+	export const Schema = Struct({
+		authors: optional(ArraySchema(NonEmptyString)),
+		doi: optional(NonEmptyString),
+		name: NonEmptyString,
+		publisher: optional(NonEmptyString),
+		releaseDate: optional(Validator.DateAnyFormat),
+		summary: optional(NonEmptyString),
+		tags: optional(ArraySchema(NonEmptyString)),
+		type: optional(NonEmptyString),
+		url: optional(Validator.Url),
+	});
 
-    export const Schema = Struct({
-        name: optional(NonEmptyString),
-        publisher: optional(NonEmptyString),
-        releaseDate: optional(Date),
-        summary: optional(NonEmptyString),
-        url: optional(Url),
-    })
-
-    export type Type = typeof Schema.Type
+	export type Type = typeof Schema.Type;
 }

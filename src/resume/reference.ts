@@ -1,13 +1,13 @@
-import { Schema } from "effect"
-
-const { Struct, optional, NonEmptyString } = Schema
+import { NonEmptyString, optional, Struct } from "effect/Schema";
 
 export namespace Reference {
+	export const Schema = Struct({
+		company: optional(NonEmptyString),
+		contact: optional(NonEmptyString),
+		name: NonEmptyString,
+		position: NonEmptyString,
+		testimonial: optional(NonEmptyString),
+	});
 
-    export const Schema = Struct({
-        name: optional(NonEmptyString),
-        reference: optional(NonEmptyString),
-    })
-
-    export type Type = typeof Schema.Type
+	export type Type = typeof Schema.Type;
 }

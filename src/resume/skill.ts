@@ -1,14 +1,18 @@
-import { Schema } from "effect"
-
-const { Struct, optional, NonEmptyString, Array } = Schema
+import {
+	Array as ArraySchema,
+	NonEmptyString,
+	Number as NumberSchema,
+	optional,
+	Struct,
+} from "effect/Schema";
 
 export namespace Skill {
+	export const Schema = Struct({
+		level: optional(NonEmptyString),
+		name: NonEmptyString,
+		tags: optional(ArraySchema(NonEmptyString)),
+		yearsOfExperience: optional(NumberSchema),
+	});
 
-    export const Schema = Struct({
-        keywords: optional(Array(NonEmptyString)),
-        level: optional(NonEmptyString),
-        name: optional(NonEmptyString),
-    })
-
-    export type Type = typeof Schema.Type
+	export type Type = typeof Schema.Type;
 }
