@@ -8,13 +8,28 @@ import { Validator } from "../validator";
 
 export namespace Award {
 	export const Schema = Struct({
-		awarder: NonEmptyString,
-		date: Validator.DateAnyFormat,
-		location: optional(NonEmptyString),
-		summary: optional(NonEmptyString),
-		tags: optional(ArraySchema(NonEmptyString)),
-		title: NonEmptyString,
-		url: optional(Validator.Url),
+		awarder: NonEmptyString.annotations({
+			description:
+				"The awarder of the award, the organization or institution that awarded the award",
+			examples: ["Google"],
+		}),
+		date: Validator.DateAnyFormat.annotations({
+			description: "The date of the award, format: YYYY-MM-DD, YYYY-MM or YYYY",
+			examples: ["2021-01-01"],
+		}),
+		location: optional(NonEmptyString).annotations({
+			description: "Any information about the location of the award",
+			examples: ["San Francisco, CA"],
+		}),
+		summary: optional(NonEmptyString).annotations({
+			description:
+				"The summary of the award, including the award name, the award level, the award category, etc.",
+			examples: ["Google AI Research Award"],
+		}),
+		tags: optional(ArraySchema(NonEmptyString)).annotations({
+			description: "Tags associated with the award",
+			examples: [["Google", "AI"]],
+		}),
 	});
 
 	export type Type = typeof Schema.Type;
