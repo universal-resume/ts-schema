@@ -1,10 +1,14 @@
 {
     "name": "@universal-resume/ts-schema",
-    "version": "0.1.0",
+    "version": "0.2.0",
+    "type": "module",
     "description": "An Effect based typescript implementation of the universal-resume standard, including structures, validatation and typing",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": ["dist"],
+    "exports": {
+        ".": "./dist/index.js"
+    },
     "scripts": {
         "build": "tsc",
         "check": "biome check .",
