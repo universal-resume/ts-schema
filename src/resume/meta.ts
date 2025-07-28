@@ -1,6 +1,6 @@
 import { NonEmptyString, optional, Struct } from "effect/Schema";
 
-import { Validator } from "../validator";
+import { Validator } from "../validator.js";
 
 export namespace Meta {
 	export const Schema = Struct({

@@ -4,7 +4,7 @@ import {
 	optional,
 	Struct,
 } from "effect/Schema";
-import { Validator } from "../validator";
+import { Validator } from "../validator.js";
 
 export namespace Award {
 	export const Schema = Struct({

@@ -1,18 +1,18 @@
 import { Array as ArraySchema, optional, Struct } from "effect/Schema";
 
-import { Award } from "./resume/award";
-import { Basics } from "./resume/basics";
-import { Certificate } from "./resume/certificate";
-import { Education } from "./resume/education";
-import { Interest } from "./resume/interest";
-import { Language } from "./resume/language";
-import { Meta } from "./resume/meta";
-import { Project } from "./resume/project";
-import { Publication } from "./resume/publication";
-import { Reference } from "./resume/reference";
-import { Skill } from "./resume/skill";
-import { Volunteer } from "./resume/volunteer";
-import { Work } from "./resume/work";
+import { Award } from "./resume/award.js";
+import { Basics } from "./resume/basics.js";
+import { Certificate } from "./resume/certificate.js";
+import { Education } from "./resume/education.js";
+import { Interest } from "./resume/interest.js";
+import { Language } from "./resume/language.js";
+import { Meta } from "./resume/meta.js";
+import { Project } from "./resume/project.js";
+import { Publication } from "./resume/publication.js";
+import { Reference } from "./resume/reference.js";
+import { Skill } from "./resume/skill.js";
+import { Volunteer } from "./resume/volunteer.js";
+import { Work } from "./resume/work.js";
 
 namespace Resume {
 	export const Schema = Struct({

@@ -5,7 +5,7 @@ import {
 	Struct,
 } from "effect/Schema";
 
-import { Validator } from "../validator";
+import { Validator } from "../validator.js";
 
 export namespace Publication {
 	export const Schema = Struct({
