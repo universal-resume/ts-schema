@@ -1,24 +1,30 @@
 {
-    "name": "typescript-universal-resume",
+    "name": "@universal-resume/ts-schema",
     "version": "0.1.0",
     "description": "An Effect based typescript implementation of the universal-resume standard, including structures, validatation and typing",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "files": ["dist"],
     "scripts": {
         "build": "tsc",
         "check": "biome check .",
         "format": "biome format . --write",
         "lint": "biome lint .",
-        "test": "vitest"
+        "test": "vitest",
+        "prepublishOnly": "npm run build"
     },
     "repository": {
         "type": "git",
         "url": "git+ssh://git@github.com/universal-resume/ts-schema.git"
     },
     "keywords": [
+        "effect",
+        "typescript",
         "resume",
         "cv",
-        "schema"
+        "schema",
+        "universal-resume",
+        "validation"
     ],
     "author": "Alexis Besson",
     "license": "MIT",
@@ -33,5 +39,8 @@
     "devDependencies": {
         "@biomejs/biome": "^2.1.2",
         "vitest": "^3.2.4"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
