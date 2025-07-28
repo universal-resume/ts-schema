@@ -1,13 +1,26 @@
-import { Schema } from "effect"
-
-const { Struct, optional, NonEmptyString } = Schema
+import {
+	Array as ArraySchema,
+	NonEmptyString,
+	optional,
+	Struct,
+} from "effect/Schema";
 
 export namespace Language {
+	export const Schema = Struct({
+		certifications: optional(ArraySchema(NonEmptyString)).annotations({
+			description:
+				"The certifications in the language, the certifications the resume subject has",
+			examples: [["TOEFL 100", "IELTS 7.5"]],
+		}),
+		fluency: optional(NonEmptyString).annotations({
+			description: "The fluency in the language",
+			examples: ["Native"],
+		}),
+		language: NonEmptyString.annotations({
+			description: "The language of the resume subject",
+			examples: ["English"],
+		}),
+	});
 
-    export const Schema = Struct({
-        fluency: optional(NonEmptyString),
-        language: optional(NonEmptyString),
-    })
-
-    export type Type = typeof Schema.Type
+	export type Type = typeof Schema.Type;
 }

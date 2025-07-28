@@ -6,6 +6,9 @@
     "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc",
+        "check": "biome check .",
+        "format": "biome format . --write",
+        "lint": "biome lint .",
         "test": "vitest"
     },
     "repository": {
@@ -25,7 +28,10 @@
     "homepage": "https://github.com/universal-resume/ts-schema#readme",
     "dependencies": {
         "effect": "^3.17.2",
-        "typescript": "^5.8.3",
+        "typescript": "^5.8.3"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^2.1.2",
         "vitest": "^3.2.4"
     }
 }
