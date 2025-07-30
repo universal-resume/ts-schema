@@ -16,19 +16,45 @@ import { Work } from "./resume/work.js";
 
 namespace Resume {
 	export const Schema = Struct({
-		awards: optional(ArraySchema(Award.Schema)),
-		basics: Basics.Schema,
-		certificates: optional(ArraySchema(Certificate.Schema)),
-		education: optional(ArraySchema(Education.Schema)),
-		interests: optional(ArraySchema(Interest.Schema)),
-		languages: optional(ArraySchema(Language.Schema)),
-		meta: Meta.Schema,
-		projects: optional(ArraySchema(Project.Schema)),
-		publications: optional(ArraySchema(Publication.Schema)),
-		references: optional(ArraySchema(Reference.Schema)),
-		skills: optional(ArraySchema(Skill.Schema)),
-		volunteers: optional(ArraySchema(Volunteer.Schema)),
-		work: optional(ArraySchema(Work.Schema)),
+		awards: optional(ArraySchema(Award.Schema)).annotations({
+			identifier: "awards",
+		}),
+		basics: Basics.Schema.annotations({
+			identifier: "basics",
+		}),
+		certificates: optional(ArraySchema(Certificate.Schema)).annotations({
+			identifier: "certificates",
+		}),
+		education: optional(ArraySchema(Education.Schema)).annotations({
+			identifier: "education",
+		}),
+		interests: optional(ArraySchema(Interest.Schema)).annotations({
+			identifier: "interests",
+		}),
+		languages: optional(ArraySchema(Language.Schema)).annotations({
+			identifier: "languages",
+		}),
+		meta: Meta.Schema.annotations({
+			identifier: "meta",
+		}),
+		projects: optional(ArraySchema(Project.Schema)).annotations({
+			identifier: "projects",
+		}),
+		publications: optional(ArraySchema(Publication.Schema)).annotations({
+			identifier: "publications",
+		}),
+		references: optional(ArraySchema(Reference.Schema)).annotations({
+			identifier: "references",
+		}),
+		skills: optional(ArraySchema(Skill.Schema)).annotations({
+			identifier: "skills",
+		}),
+		volunteers: optional(ArraySchema(Volunteer.Schema)).annotations({
+			identifier: "volunteers",
+		}),
+		work: optional(ArraySchema(Work.Schema)).annotations({
+			identifier: "work",
+		}),
 	});
 
 	export type Type = typeof Schema.Type;

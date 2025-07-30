@@ -1,6 +1,6 @@
 {
     "name": "@universal-resume/ts-schema",
-    "version": "0.2.2",
+    "version": "0.3.0",
     "type": "module",
     "description": "An Effect based typescript implementation of the universal-resume standard, including structures, validatation and typing",
     "main": "dist/resume.js",
