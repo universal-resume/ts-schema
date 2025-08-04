@@ -8,8 +8,13 @@ import { Validator } from "../validator.js";
 
 export namespace Award {
 	export const Schema = Struct({
+		title: NonEmptyString.annotations({
+			identifier: "award-title",
+			description: "The title of the award",
+			examples: ["Google AI Research Award"],
+		}),
 		awarder: NonEmptyString.annotations({
-			identifier: "awarder",
+			identifier: "award-awarder",
 			description:
 				"The awarder of the award, the organization or institution that awarded the award",
 			examples: ["Google"],
