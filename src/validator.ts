@@ -3,7 +3,7 @@ import { Schema } from "effect";
 export namespace Validator {
 	export const Url = Schema.NonEmptyString.pipe(
 		Schema.pattern(
-			/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/,
+			/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})(\/[\w .-]*)*\/?$/,
 		),
 	);
 
