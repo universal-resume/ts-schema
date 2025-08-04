@@ -1,9 +1,13 @@
 import { Schema } from "effect";
+import urlRegex from "url-regex";
 
 export namespace Validator {
 	export const Url = Schema.NonEmptyString.pipe(
 		Schema.pattern(
-			/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})(\/[\w .-]*)*\/?$/,
+			urlRegex({
+				exact: true,
+				strict: true,
+			}),
 		),
 	);
 
