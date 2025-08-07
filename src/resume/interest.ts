@@ -1,3 +1,4 @@
+import { summary, tags } from "@annotation";
 import {
 	Array as ArraySchema,
 	NonEmptyString,
@@ -7,12 +8,10 @@ import {
 
 export namespace Interest {
 	export const Schema = Struct({
-		description: optional(NonEmptyString).annotations({
-			identifier: "interest-description",
-			description: "The description of the interest",
-			examples: [
-				"I am interested in reading books, specialising in science fiction, fantasy, and manga.",
-			],
+		summary: optional(NonEmptyString).annotations({
+			identifier: "interest-summary",
+			description: summary.description,
+			examples: summary.examples,
 		}),
 		name: NonEmptyString.annotations({
 			identifier: "interest-name",
@@ -21,8 +20,8 @@ export namespace Interest {
 		}),
 		tags: optional(ArraySchema(NonEmptyString)).annotations({
 			identifier: "interest-tags",
-			description: "Tags associated with the interest",
-			examples: [["Naruto", "One Piece", "Bleach"]],
+			description: tags.description,
+			examples: tags.examples,
 		}),
 	});
 

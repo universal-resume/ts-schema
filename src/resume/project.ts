@@ -1,71 +1,63 @@
 import {
+	date,
+	highlights,
+	location,
+	organization,
+	position,
+	summary,
+	tags,
+	url,
+} from "@annotation";
+import {
 	Array as ArraySchema,
+	Date as DateFromString,
 	NonEmptyString,
 	optional,
 	Struct,
 } from "effect/Schema";
-
 import { Validator } from "../validator.js";
 
 export namespace Project {
 	export const Schema = Struct({
-		description: optional(NonEmptyString).annotations({
-			identifier: "project-description",
-			description: "The description of the project",
-			examples: [
-				"An open-source resume builder that allows users to create a resume in a few minutes.",
-			],
+		summary: optional(NonEmptyString).annotations({
+			identifier: "project-summary",
+			description: summary.description,
+			examples: summary.examples,
 		}),
-		endDate: optional(Validator.DateAnyFormat).annotations({
+		endDate: optional(DateFromString).annotations({
 			identifier: "project-end-date",
-			description:
-				"The end date of the project, format: YYYY-MM-DD, YYYY-MM or YYYY",
-			examples: ["2021-01-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
-		entity: optional(NonEmptyString).annotations({
-			identifier: "project-entity",
-			description:
-				"The entity of the project, the organization or institution that the project is related to, e.g. Google, Facebook, etc.",
-			examples: ["Github"],
+		organization: optional(NonEmptyString).annotations({
+			identifier: "project-organization",
+			description: organization.description,
+			examples: organization.examples,
 		}),
 		highlights: optional(ArraySchema(NonEmptyString)).annotations({
 			identifier: "project-highlights",
-			description:
-				"The highlights of the project, the key features of the project, the main contributions of the project",
-			examples: [
-				["Worked on standard resume schema"],
-				["Write TS and Rust implementations"],
-			],
+			description: highlights.description,
+			examples: highlights.examples,
 		}),
 		location: optional(NonEmptyString).annotations({
 			identifier: "project-location",
-			description: "The location of the project",
-			examples: ["Shanghai, China, Remote, etc."],
+			description: location.description,
+			examples: location.examples,
 		}),
 		name: NonEmptyString.annotations({
 			identifier: "project-name",
 			description: "The name of the project",
 			examples: ["Universal Resume"],
 		}),
-		roles: optional(ArraySchema(NonEmptyString)).annotations({
-			identifier: "project-roles",
-			description:
-				"The roles of the project, the roles the resume subject has in the project",
-			examples: [
-				[
-					"Software Engineer",
-					"Full Stack Developer",
-					"Contributor",
-					"Maintainer",
-					"Founder",
-				],
-			],
+		position: optional(NonEmptyString).annotations({
+			identifier: "project-position",
+			description: position.description,
+			examples: position.examples,
 		}),
-		startDate: optional(Validator.DateAnyFormat).annotations({
+		startDate: DateFromString.annotations({
 			identifier: "project-start-date",
-			description:
-				"The start date of the project, format: YYYY-MM-DD, YYYY-MM or YYYY",
-			examples: ["2021-01-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
 		status: optional(NonEmptyString).annotations({
 			identifier: "project-status",
@@ -74,8 +66,8 @@ export namespace Project {
 		}),
 		tags: optional(ArraySchema(NonEmptyString)).annotations({
 			identifier: "project-tags",
-			description: "Associated tags of the project",
-			examples: [["Open-source", "Resume", "Builder"]],
+			description: tags.description,
+			examples: tags.examples,
 		}),
 		type: optional(NonEmptyString).annotations({
 			identifier: "project-type",
@@ -90,9 +82,8 @@ export namespace Project {
 		}),
 		url: optional(Validator.Url).annotations({
 			identifier: "project-url",
-			description:
-				"The URL of the project, the URL of the project page or the URL of the project repository",
-			examples: ["https://www.github.com/universal-resume"],
+			description: url.description,
+			examples: url.examples,
 		}),
 	});
 

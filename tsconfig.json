@@ -9,7 +9,12 @@
 		"strict": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
-		"skipLibCheck": true
+		"skipLibCheck": true,
+        "paths": {
+            "@annotation": [
+                "./src/annotation"
+            ]
+        }
 	},
 	"include": ["src"]
 }

@@ -1,5 +1,7 @@
+import { date, url } from "@annotation";
 import {
 	Array as ArraySchema,
+	Date as DateFromString,
 	NonEmptyString,
 	optional,
 	Struct,
@@ -9,11 +11,10 @@ import { Validator } from "../validator.js";
 
 export namespace Certificate {
 	export const Schema = Struct({
-		issueDate: Validator.DateAnyFormat.annotations({
+		issueDate: DateFromString.annotations({
 			identifier: "certificate-issue-date",
-			description:
-				"The date of the certificate, format: YYYY-MM-DD, YYYY-MM or YYYY",
-			examples: ["2021-01-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
 		issuer: NonEmptyString.annotations({
 			identifier: "certificate-issuer",
@@ -29,9 +30,8 @@ export namespace Certificate {
 		}),
 		url: optional(Validator.Url).annotations({
 			identifier: "certificate-url",
-			description:
-				"The URL of the certificate, the URL of the certificate page or the URL of the certificate issuer",
-			examples: ["https://www.google.com/certificate/1234567890"],
+			description: url.description,
+			examples: url.examples,
 		}),
 		tags: optional(ArraySchema(NonEmptyString)).annotations({
 			identifier: "certificate-tags",

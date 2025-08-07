@@ -1,10 +1,20 @@
 import {
+	date,
+	highlights,
+	location,
+	organization,
+	position,
+	summary,
+	tags,
+	url,
+} from "@annotation";
+import {
 	Array as ArraySchema,
+	Date as DateFromString,
 	NonEmptyString,
 	optional,
 	Struct,
 } from "effect/Schema";
-
 import { Validator } from "../validator.js";
 
 export namespace Work {
@@ -14,55 +24,50 @@ export namespace Work {
 			description: "The contract type of the work experience",
 			examples: ["Full-time", "Part-time", "Freelance", "etc."],
 		}),
-		description: optional(NonEmptyString).annotations({
-			identifier: "work-description",
-			description: "The description of the work experience",
-			examples: ["I worked as a software engineer at Google"],
+		summary: optional(NonEmptyString).annotations({
+			identifier: "work-summary",
+			description: summary.description,
+			examples: summary.examples,
 		}),
-		endDate: optional(Validator.DateAnyFormat).annotations({
+		endDate: optional(DateFromString).annotations({
 			identifier: "work-end-date",
-			description: "The end date of the work experience",
-			examples: ["2021-01-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
 		highlights: optional(ArraySchema(NonEmptyString)).annotations({
 			identifier: "work-highlights",
-			description: "The highlights of the work experience",
-			examples: [
-				[
-					"Optimized loading time of the website by 50%",
-					"Designed and implemented the new UI of the website",
-				],
-			],
+			description: highlights.description,
+			examples: highlights.examples,
 		}),
 		location: optional(NonEmptyString).annotations({
 			identifier: "work-location",
-			description: "The location of the work experience",
-			examples: ["Miami, Florida, USA"],
+			description: location.description,
+			examples: location.examples,
 		}),
 		organization: NonEmptyString.annotations({
 			identifier: "work-organization",
-			description: "The organization of the work experience",
-			examples: ["Google"],
+			description: organization.description,
+			examples: organization.examples,
 		}),
 		position: NonEmptyString.annotations({
 			identifier: "work-position",
-			description: "The position of the work experience",
-			examples: ["Software Engineer"],
+			description: position.description,
+			examples: position.examples,
 		}),
-		startDate: Validator.DateAnyFormat.annotations({
+		startDate: DateFromString.annotations({
 			identifier: "work-start-date",
-			description: "The start date of the work experience",
-			examples: ["2021-01-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
 		tags: optional(ArraySchema(NonEmptyString)).annotations({
 			identifier: "work-tags",
-			description: "The tags of the work experience",
-			examples: [["Typescript", "React", "Node.js", "Tailwind CSS"]],
+			description: tags.description,
+			examples: tags.examples,
 		}),
 		url: optional(Validator.Url).annotations({
 			identifier: "work-url",
-			description: "The URL of the organization's website",
-			examples: ["https://www.google.com"],
+			description: url.description,
+			examples: url.examples,
 		}),
 	});
 

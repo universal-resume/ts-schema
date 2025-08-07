@@ -55,31 +55,3 @@ describe("CountryCode", () => {
 		expect(Exit.isFailure(exit)).toBe(true);
 	});
 });
-
-describe("Date", () => {
-	it("validates a correct date with year, month and day", () => {
-		const date = "2021-01-01";
-		const result = Effect.runSync(Schema.decode(Validator.DateAnyFormat)(date));
-		expect(result).toEqual(date);
-	});
-
-	it("validates a correct date with year and month", () => {
-		const date = "2021-01";
-		const result = Effect.runSync(Schema.decode(Validator.DateAnyFormat)(date));
-		expect(result).toEqual(date);
-	});
-
-	it("validates a correct date with year", () => {
-		const date = "2021";
-		const result = Effect.runSync(Schema.decode(Validator.DateAnyFormat)(date));
-		expect(result).toEqual(date);
-	});
-
-	it("invalidates an incorrect date", () => {
-		const date = "bad-date";
-		const exit = Effect.runSyncExit(
-			Schema.decode(Validator.DateAnyFormat)(date),
-		);
-		expect(Exit.isFailure(exit)).toBe(true);
-	});
-});

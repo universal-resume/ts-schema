@@ -1,11 +1,17 @@
-import { NonEmptyString, optional, Struct } from "effect/Schema";
+import { date, organization, position } from "@annotation";
+import {
+	Date as DateFromString,
+	NonEmptyString,
+	optional,
+	Struct,
+} from "effect/Schema";
 
 export namespace Reference {
 	export const Schema = Struct({
-		company: optional(NonEmptyString).annotations({
-			identifier: "reference-company",
-			description: "The company you worked for at the time of the reference",
-			examples: ["Google"],
+		organization: optional(NonEmptyString).annotations({
+			identifier: "reference-organization",
+			description: organization.description,
+			examples: organization.examples,
 		}),
 		contact: optional(NonEmptyString).annotations({
 			identifier: "reference-contact",
@@ -16,6 +22,11 @@ export namespace Reference {
 				"+1234567890",
 			],
 		}),
+		date: DateFromString.annotations({
+			identifier: "reference-date",
+			description: date.description,
+			examples: date.examples,
+		}),
 		name: NonEmptyString.annotations({
 			identifier: "reference-name",
 			description: "The name of the person who is giving the reference",
@@ -23,8 +34,8 @@ export namespace Reference {
 		}),
 		position: NonEmptyString.annotations({
 			identifier: "reference-position",
-			description: "The position of the person who is giving the reference",
-			examples: ["Software Engineer"],
+			description: position.description,
+			examples: position.examples,
 		}),
 		testimonial: optional(NonEmptyString).annotations({
 			identifier: "reference-testimonial",

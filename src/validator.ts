@@ -18,10 +18,4 @@ export namespace Validator {
 	export const CountryCode = Schema.NonEmptyString.pipe(
 		Schema.pattern(/^[a-z]{2}$/),
 	);
-
-	export const DateAnyFormat = Schema.NonEmptyString.pipe(
-		Schema.pattern(
-			/^[1-9]\d{3}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12]\d|3[01]))?)?$/,
-		),
-	);
 }
