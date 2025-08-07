@@ -1,11 +1,12 @@
+import { date } from "@annotation";
 import {
 	Array as ArraySchema,
 	Boolean as BooleanSchema,
+	Date as DateFromString,
 	NonEmptyString,
 	optional,
 	Struct,
 } from "effect/Schema";
-
 import { Validator } from "../validator.js";
 
 export namespace Basics {
@@ -61,10 +62,10 @@ export namespace Basics {
 	});
 
 	export const Schema = Struct({
-		dateOfBirth: optional(Validator.DateAnyFormat).annotations({
+		dateOfBirth: optional(DateFromString).annotations({
 			identifier: "date-of-birth",
-			description: "The date of birth of resume subject, format: YYYY-MM-DD",
-			examples: ["1990-01-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
 		driverLicenses: optional(ArraySchema(NonEmptyString)).annotations({
 			identifier: "driver-licenses",

@@ -1,55 +1,61 @@
 import {
+	date,
+	highlights,
+	location,
+	organization,
+	position,
+	summary,
+	tags,
+} from "@annotation";
+import {
 	Array as ArraySchema,
+	Date as DateFromString,
 	NonEmptyString,
 	optional,
 	Struct,
 } from "effect/Schema";
 
-import { Validator } from "../validator.js";
-
 export namespace Volunteer {
 	export const Schema = Struct({
-		endDate: optional(Validator.DateAnyFormat).annotations({
+		endDate: optional(DateFromString).annotations({
 			identifier: "volunteer-end-date",
-			description: "The end date of the volunteer experience",
-			examples: ["2021-01-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
 		highlights: optional(ArraySchema(NonEmptyString)).annotations({
 			identifier: "volunteer-highlights",
-			description: "The highlights of the volunteer experience",
-			examples: [["Give math lessons to the children of my street"]],
+			description: highlights.description,
+			examples: highlights.examples,
 		}),
 		location: optional(NonEmptyString).annotations({
 			identifier: "volunteer-location",
-			description: "The location of the volunteer experience",
-			examples: ["Sao Paulo, Brazil"],
+			description: location.description,
+			examples: location.examples,
 		}),
 		organization: NonEmptyString.annotations({
 			identifier: "volunteer-organization",
-			description: "The organization of the volunteer experience",
-			examples: ["Association of math teachers"],
+			description: organization.description,
+			examples: organization.examples,
 		}),
 		position: NonEmptyString.annotations({
 			identifier: "volunteer-position",
-			description: "The role of the resume subject in the volunteer experience",
-			examples: ["Math Teacher"],
+			description: position.description,
+			examples: position.examples,
 		}),
-		startDate: Validator.DateAnyFormat.annotations({
+		startDate: DateFromString.annotations({
 			identifier: "volunteer-start-date",
-			description: "The start date of the volunteer experience",
-			examples: ["2021-01-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
 		summary: optional(NonEmptyString).annotations({
 			identifier: "volunteer-summary",
-			description: "The summary of the volunteer experience",
-			examples: [
-				"I gave math lessons to the children of my street, from 6 to 12 years old, twice a week",
-			],
+			description: summary.description,
+			examples: summary.examples,
 		}),
 		tags: optional(ArraySchema(NonEmptyString)).annotations({
 			identifier: "volunteer-tags",
-			description: "The tags of the volunteer experience",
-			examples: [["Math", "Volunteer", "Children", "School"]],
+			description: tags.description,
+			examples: tags.examples,
 		}),
 	});
 

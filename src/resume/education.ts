@@ -1,10 +1,11 @@
+import { date, location, organization, url } from "@annotation";
 import {
 	Array as ArraySchema,
+	Date as DateFromString,
 	NonEmptyString,
 	optional,
 	Struct,
 } from "effect/Schema";
-
 import { Validator } from "../validator.js";
 
 export namespace Education {
@@ -37,33 +38,30 @@ export namespace Education {
 		courses: optional(ArraySchema(Course)).annotations({
 			identifier: "education-courses",
 		}),
-		endDate: optional(Validator.DateAnyFormat).annotations({
+		endDate: optional(DateFromString).annotations({
 			identifier: "education-end-date",
-			description:
-				"The end date of the education, format: YYYY-MM-DD, YYYY-MM or YYYY",
-			examples: ["2021-01-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
-		institution: NonEmptyString.annotations({
-			identifier: "education-institution",
-			description:
-				"The institution of the education, the organization or institution that provided the education",
-			examples: ["Stanford University"],
+		organization: NonEmptyString.annotations({
+			identifier: "education-organization",
+			description: organization.description,
+			examples: organization.examples,
 		}),
 		location: optional(NonEmptyString).annotations({
 			identifier: "education-location",
-			description: "Any information about the location of the education",
-			examples: ["San Francisco, CA"],
+			description: location.description,
+			examples: location.examples,
 		}),
 		score: optional(NonEmptyString).annotations({
 			identifier: "education-score",
 			description: "The score obtained in the education",
 			examples: ["3.8"],
 		}),
-		startDate: Validator.DateAnyFormat.annotations({
+		startDate: DateFromString.annotations({
 			identifier: "education-start-date",
-			description:
-				"The start date of the education, format: YYYY-MM-DD, YYYY-MM or YYYY",
-			examples: ["2018-09-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
 		studyType: NonEmptyString.annotations({
 			identifier: "education-study-type",
@@ -73,9 +71,8 @@ export namespace Education {
 		}),
 		url: optional(Validator.Url).annotations({
 			identifier: "education-url",
-			description:
-				"The URL of the education, the URL of the education page or the URL of the education institution",
-			examples: ["https://www.stanford.edu"],
+			description: url.description,
+			examples: url.examples,
 		}),
 	});
 

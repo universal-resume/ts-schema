@@ -1,3 +1,4 @@
+import { tags } from "@annotation";
 import {
 	Array as ArraySchema,
 	NonEmptyString,
@@ -27,8 +28,8 @@ export namespace Skill {
 		}),
 		tags: optional(ArraySchema(NonEmptyString)).annotations({
 			identifier: "skill-tags",
-			description: "The tags of the skill",
-			examples: [["Python", "Rust", "TypeScript", "React", "Node.js"]],
+			description: tags.description,
+			examples: tags.examples,
 		}),
 		yearsOfExperience: optional(NumberSchema).annotations({
 			identifier: "skill-years-of-experience",

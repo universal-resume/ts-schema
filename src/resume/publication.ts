@@ -1,10 +1,11 @@
+import { date, summary, tags, url } from "@annotation";
 import {
 	Array as ArraySchema,
+	Date as DateFromString,
 	NonEmptyString,
 	optional,
 	Struct,
 } from "effect/Schema";
-
 import { Validator } from "../validator.js";
 
 export namespace Publication {
@@ -29,21 +30,20 @@ export namespace Publication {
 			description: "The publisher of the publication",
 			examples: ["Addison-Wesley"],
 		}),
-		releaseDate: optional(Validator.DateAnyFormat).annotations({
+		releaseDate: DateFromString.annotations({
 			identifier: "publication-release-date",
-			description:
-				"The release date of the publication, format: YYYY-MM-DD, YYYY-MM or YYYY",
-			examples: ["2021-01-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
 		summary: optional(NonEmptyString).annotations({
 			identifier: "publication-summary",
-			description: "The summary of the publication",
-			examples: ["A book about the art of computer programming"],
+			description: summary.description,
+			examples: summary.examples,
 		}),
 		tags: optional(ArraySchema(NonEmptyString)).annotations({
 			identifier: "publication-tags",
-			description: "Associated tags of the publication",
-			examples: [["Computer Science", "Programming", "Algorithm"]],
+			description: tags.description,
+			examples: tags.examples,
 		}),
 		type: optional(NonEmptyString).annotations({
 			identifier: "publication-type",
@@ -52,11 +52,8 @@ export namespace Publication {
 		}),
 		url: optional(Validator.Url).annotations({
 			identifier: "publication-url",
-			description:
-				"The URL of the publication, the URL of the publication page or the URL of the publication repository",
-			examples: [
-				"https://www.amazon.com/The-Art-Computer-Programming-Volumes/dp/0321751043",
-			],
+			description: url.description,
+			examples: url.examples,
 		}),
 	});
 

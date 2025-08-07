@@ -1,20 +1,23 @@
-import { NonEmptyString, optional, Struct } from "effect/Schema";
-
+import { date, url } from "@annotation";
+import {
+	Date as DateFromString,
+	NonEmptyString,
+	optional,
+	Struct,
+} from "effect/Schema";
 import { Validator } from "../validator.js";
 
 export namespace Meta {
 	export const Schema = Struct({
 		canonical: optional(Validator.Url).annotations({
 			identifier: "meta-canonical",
-			description:
-				"The canonical URL of the resume, the URL of the resume page",
-			examples: ["https://www.john-doe.com/resume"],
+			description: url.description,
+			examples: url.examples,
 		}),
-		lastModified: optional(Validator.DateAnyFormat).annotations({
+		lastModified: optional(DateFromString).annotations({
 			identifier: "meta-last-modified",
-			description:
-				"The last modified date of the resume, format: YYYY-MM-DD, YYYY-MM or YYYY",
-			examples: ["2021-01-01"],
+			description: date.description,
+			examples: date.examples,
 		}),
 		schema: optional(NonEmptyString).annotations({
 			identifier: "meta-schema",
