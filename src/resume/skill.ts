@@ -1,4 +1,4 @@
-import { tags } from "@annotation";
+import { ProperNoun, Tag } from "@value-object";
 import {
 	Array as ArraySchema,
 	NonEmptyString,
@@ -14,23 +14,8 @@ export namespace Skill {
 			description: "The level of the skill",
 			examples: ["Beginner", "Intermediate", "Advanced", "Expert"],
 		}),
-		name: NonEmptyString.annotations({
-			identifier: "skill-name",
-			description: "The name of the skill",
-			examples: [
-				"Development",
-				"Design",
-				"AI",
-				"Machine Learning",
-				"Data Science",
-				"etc.",
-			],
-		}),
-		tags: optional(ArraySchema(NonEmptyString)).annotations({
-			identifier: "skill-tags",
-			description: tags.description,
-			examples: tags.examples,
-		}),
+		name: ProperNoun,
+		tags: optional(ArraySchema(Tag)),
 		yearsOfExperience: optional(NumberSchema).annotations({
 			identifier: "skill-years-of-experience",
 			description: "The years of experience of the skill",

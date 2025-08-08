@@ -1,6 +1,5 @@
-import { date, organization, position } from "@annotation";
+import { DateFromString, Organization, Position, ProperNoun } from "@value-object";
 import {
-	Date as DateFromString,
 	NonEmptyString,
 	optional,
 	Struct,
@@ -8,11 +7,7 @@ import {
 
 export namespace Reference {
 	export const Schema = Struct({
-		organization: optional(NonEmptyString).annotations({
-			identifier: "reference-organization",
-			description: organization.description,
-			examples: organization.examples,
-		}),
+		organization: optional(Organization),
 		contact: optional(NonEmptyString).annotations({
 			identifier: "reference-contact",
 			description: "The contact of the reference",
@@ -22,21 +17,9 @@ export namespace Reference {
 				"+1234567890",
 			],
 		}),
-		date: DateFromString.annotations({
-			identifier: "reference-date",
-			description: date.description,
-			examples: date.examples,
-		}),
-		name: NonEmptyString.annotations({
-			identifier: "reference-name",
-			description: "The name of the person who is giving the reference",
-			examples: ["John Doe"],
-		}),
-		position: NonEmptyString.annotations({
-			identifier: "reference-position",
-			description: position.description,
-			examples: position.examples,
-		}),
+		date: DateFromString,
+		name: ProperNoun,
+		position: optional(Position),
 		testimonial: optional(NonEmptyString).annotations({
 			identifier: "reference-testimonial",
 			description: "The testimonial of the reference",

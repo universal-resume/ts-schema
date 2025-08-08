@@ -1,43 +1,32 @@
-import { date } from "@annotation";
+import { CountryCode, DateFromString, Email, Summary, Url } from "@value-object";
 import {
 	Array as ArraySchema,
 	Boolean as BooleanSchema,
-	Date as DateFromString,
 	NonEmptyString,
 	optional,
 	Struct,
 } from "effect/Schema";
-import { Validator } from "../validator.js";
 
 export namespace Basics {
 	const Location = Struct({
 		address: optional(NonEmptyString).annotations({
-			identifier: "address",
 			description: "The address of resume subject",
 			examples: ["123 Main St"],
 		}),
 		city: optional(NonEmptyString).annotations({
-			identifier: "city",
 			description: "The city of resume subject",
 			examples: ["New York"],
 		}),
-		countryCode: optional(Validator.CountryCode).annotations({
-			identifier: "country-code",
-			description: "The country code of resume subject, ISO 3166-1 alpha-2",
-			examples: ["US"],
-		}),
+		countryCode: optional(CountryCode),
 		postalCode: optional(NonEmptyString).annotations({
-			identifier: "postal-code",
 			description: "The postal code of resume subject",
 			examples: ["10001"],
 		}),
 		region: optional(NonEmptyString).annotations({
-			identifier: "region",
 			description: "The region of resume subject",
 			examples: ["New York"],
 		}),
 		remote: optional(BooleanSchema).annotations({
-			identifier: "remote",
 			description: "Whether the resume subject is willing to work remotely",
 			examples: [true],
 		}),
@@ -45,80 +34,42 @@ export namespace Basics {
 
 	const Profile = Struct({
 		network: NonEmptyString.annotations({
-			identifier: "profile-network",
 			description: "The network of the profile",
 			examples: ["LinkedIn"],
 		}),
-		url: Validator.Url.annotations({
-			identifier: "profile-url",
-			description: "The URL of the profile",
-			examples: ["https://www.linkedin.com/in/john-doe"],
-		}),
+		url: Url,
 		username: optional(NonEmptyString).annotations({
-			identifier: "profile-username",
 			description: "The username of the profile",
 			examples: ["john-doe"],
 		}),
 	});
 
 	export const Schema = Struct({
-		dateOfBirth: optional(DateFromString).annotations({
-			identifier: "date-of-birth",
-			description: date.description,
-			examples: date.examples,
-		}),
+		dateOfBirth: optional(DateFromString),
 		driverLicenses: optional(ArraySchema(NonEmptyString)).annotations({
-			identifier: "driver-licenses",
 			description: "The driver licenses of resume subject",
 			examples: [["A", "B", "C"]],
 		}),
-		email: optional(Validator.Email).annotations({
-			identifier: "email",
-			description: "The email address of resume subject",
-			example: ["john.doe@example.com"],
-		}),
+		email: optional(Email),
 		headline: NonEmptyString.annotations({
-			identifier: "headline",
 			description: "The headline, title or position of resume subject",
 			examples: ["Software Engineer"],
 		}),
-		image: optional(Validator.Url).annotations({
-			identifier: "image",
-			description: "The image URL of resume subject",
-			examples: ["https://www.linkedin.com/in/john-doe/image"],
-		}),
-		location: optional(Location).annotations({
-			identifier: "location",
-		}),
+		image: optional(Url),
+		location: optional(Location),
 		name: NonEmptyString.annotations({
-			identifier: "name",
 			description: "The name of resume subject",
 			examples: ["John Doe"],
 		}),
-		nationalities: optional(ArraySchema(Validator.CountryCode)).annotations({
-			identifier: "nationalities",
-			description: "The nationalities of resume subject",
-			examples: [["US", "UK"]],
-		}),
+		nationalities: optional(ArraySchema(CountryCode)),
 		phone: optional(NonEmptyString).annotations({
-			identifier: "phone",
 			description: "The phone number of resume subject",
 			examples: ["+1234567890"],
 		}),
-		profiles: optional(ArraySchema(Profile)).annotations({
-			identifier: "profiles",
-		}),
-		summary: optional(NonEmptyString).annotations({
-			identifier: "summary",
-			description: "The summary of resume subject",
-			examples: [
-				"After 10 years of working in the field of computer science, I am looking for a new challenge in the field of AI.",
-			],
-		}),
-		url: optional(Validator.Url).annotations({
-			identifier: "url",
+		profiles: optional(ArraySchema(Profile)),
+		summary: optional(Summary),
+		url: optional(Url).annotations({
 			description: "The personal website, portfolio or blog of resume subject",
-			examples: ["https://www.john-doe.com"],
 		}),
 	});
 

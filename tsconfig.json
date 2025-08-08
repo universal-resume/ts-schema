@@ -11,9 +11,9 @@
 		"forceConsistentCasingInFileNames": true,
 		"skipLibCheck": true,
         "paths": {
-            "@annotation": [
-                "./src/annotation"
-            ]
+			"@value-object": [
+				"./src/value-object"
+			]
         }
 	},
 	"include": ["src"]
