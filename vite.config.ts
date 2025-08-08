@@ -6,7 +6,7 @@ export default defineConfig({
 	},
   resolve: {
     alias: {
-     '@annotation': new URL('./src/annotation', import.meta.url).pathname,
+     '#value-object': new URL('./src/value-object', import.meta.url).pathname,
     },
   },
 });

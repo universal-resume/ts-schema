@@ -1,5 +1,10 @@
-import { Array as ArraySchema, optional, Struct } from "effect/Schema";
-
+import { Effect } from "effect/index";
+import {
+	Array as ArraySchema,
+	decodeUnknown,
+	optional,
+	Struct,
+} from "effect/Schema";
 import { Award } from "./resume/award.js";
 import { Basics } from "./resume/basics.js";
 import { Certificate } from "./resume/certificate.js";
@@ -34,7 +39,7 @@ namespace Resume {
 		languages: optional(ArraySchema(Language.Schema)).annotations({
 			identifier: "languages",
 		}),
-		meta: Meta.Schema.annotations({
+		meta: optional(Meta.Schema).annotations({
 			identifier: "meta",
 		}),
 		projects: optional(ArraySchema(Project.Schema)).annotations({
@@ -58,6 +63,11 @@ namespace Resume {
 	});
 
 	export type Type = typeof Schema.Type;
+
+	export const decodeSync = (json: unknown) =>
+		Effect.runSync(decodeUnknown(Schema)(json));
+	export const decodeAsync = (json: unknown) =>
+		Effect.runPromise(decodeUnknown(Schema)(json));
 }
 
 export {

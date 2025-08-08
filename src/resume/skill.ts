@@ -1,41 +1,14 @@
-import { tags } from "@annotation";
-import {
-	Array as ArraySchema,
-	NonEmptyString,
-	Number as NumberSchema,
-	optional,
-	Struct,
-} from "effect/Schema";
+import { Array as ArraySchema, optional, Struct } from "effect/Schema";
+import { ProperNoun, Tag } from "#value-object";
+import { Level } from "./skill/level.js";
+import { YearsOfExperience } from "./skill/year-of-experience.js";
 
 export namespace Skill {
 	export const Schema = Struct({
-		level: optional(NonEmptyString).annotations({
-			identifier: "skill-level",
-			description: "The level of the skill",
-			examples: ["Beginner", "Intermediate", "Advanced", "Expert"],
-		}),
-		name: NonEmptyString.annotations({
-			identifier: "skill-name",
-			description: "The name of the skill",
-			examples: [
-				"Development",
-				"Design",
-				"AI",
-				"Machine Learning",
-				"Data Science",
-				"etc.",
-			],
-		}),
-		tags: optional(ArraySchema(NonEmptyString)).annotations({
-			identifier: "skill-tags",
-			description: tags.description,
-			examples: tags.examples,
-		}),
-		yearsOfExperience: optional(NumberSchema).annotations({
-			identifier: "skill-years-of-experience",
-			description: "The years of experience of the skill",
-			examples: [1, 2, 3, 4, 5],
-		}),
+		level: optional(Level),
+		name: ProperNoun.FromString,
+		tags: optional(ArraySchema(Tag.FromString)),
+		yearsOfExperience: optional(YearsOfExperience),
 	});
 
 	export type Type = typeof Schema.Type;

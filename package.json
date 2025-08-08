@@ -11,6 +11,9 @@
     "exports": {
         ".": "./dist/resume.js"
     },
+    "imports": {
+        "#value-object": "./dist/value-object.js"
+    },
     "scripts": {
         "build": "tsc",
         "check": "biome check .",
@@ -40,8 +43,7 @@
     "homepage": "https://github.com/universal-resume/ts-schema#readme",
     "dependencies": {
         "effect": "^3.17.2",
-        "typescript": "^5.8.3",
-        "url-regex": "^5.0.0"
+        "typescript": "^5.8.3"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.1.2",
