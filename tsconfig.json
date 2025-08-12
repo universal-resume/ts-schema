@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"baseUrl": ".",
 		"target": "ES2020",
 		"module": "ESNext",
 		"moduleResolution": "Node",
@@ -11,9 +12,9 @@
 		"forceConsistentCasingInFileNames": true,
 		"skipLibCheck": true,
         "paths": {
-            "@annotation": [
-                "./src/annotation"
-            ]
+			"#value-object": [
+				"./src/value-object.ts"
+			]
         }
 	},
 	"include": ["src"]

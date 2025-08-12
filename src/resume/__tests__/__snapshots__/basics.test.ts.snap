@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should parse this Basics 1`] = `
+{
+  "birth": 1975-08-12T00:00:00.000Z,
+  "driverLicenses": [
+    "B",
+  ],
+  "headline": "Vice President of IT Operations",
+  "location": {
+    "address": "123 Enterprise Blvd",
+    "city": "Phoenix",
+    "countryCode": "US",
+    "postalCode": "85001",
+    "region": "Arizona",
+  },
+  "name": "Bill Palmer",
+  "nationalities": [
+    "US",
+  ],
+  "picture": "https://example.com/images/bill-palmer.jpg",
+  "profiles": [
+    {
+      "network": "LinkedIn",
+      "url": "https://www.linkedin.com/in/bill-palmer-it",
+      "username": "bill-palmer-it",
+    },
+  ],
+  "remote": true,
+  "summary": "Experienced IT leader with a strong background in IT operations, infrastructure management, and organizational transformation. Proven ability to lead cross-functional teams, modernize legacy systems, and drive digital transformation under pressure. Known for turning crisis into opportunity, and aligning IT with business goals.",
+  "website": "https://billpalmer.dev/",
+}
+`;

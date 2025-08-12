@@ -1,49 +1,23 @@
-import { date, organization, position } from "@annotation";
+import { Array as ArraySchema, optional, Struct } from "effect/Schema";
 import {
-	Date as DateFromString,
-	NonEmptyString,
-	optional,
-	Struct,
-} from "effect/Schema";
+	Contact,
+	Day,
+	Organization,
+	Position,
+	Profile,
+	ProperNoun,
+} from "#value-object";
+import { Testamonial } from "./reference/testamonial.js";
 
 export namespace Reference {
 	export const Schema = Struct({
-		organization: optional(NonEmptyString).annotations({
-			identifier: "reference-organization",
-			description: organization.description,
-			examples: organization.examples,
-		}),
-		contact: optional(NonEmptyString).annotations({
-			identifier: "reference-contact",
-			description: "The contact of the reference",
-			examples: [
-				"john.doe@google.com",
-				"linkedin.com/in/john-doe",
-				"+1234567890",
-			],
-		}),
-		date: DateFromString.annotations({
-			identifier: "reference-date",
-			description: date.description,
-			examples: date.examples,
-		}),
-		name: NonEmptyString.annotations({
-			identifier: "reference-name",
-			description: "The name of the person who is giving the reference",
-			examples: ["John Doe"],
-		}),
-		position: NonEmptyString.annotations({
-			identifier: "reference-position",
-			description: position.description,
-			examples: position.examples,
-		}),
-		testimonial: optional(NonEmptyString).annotations({
-			identifier: "reference-testimonial",
-			description: "The testimonial of the reference",
-			examples: [
-				"John is a great software engineer who is always willing to help others.",
-			],
-		}),
+		organization: optional(Organization.Schema),
+		contact: optional(Contact.Schema),
+		profiles: optional(ArraySchema(Profile.Schema)),
+		date: Day.FromString,
+		name: ProperNoun.FromString,
+		position: optional(Position.FromString),
+		testimonial: optional(Testamonial),
 	});
 
 	export type Type = typeof Schema.Type;

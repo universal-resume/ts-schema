@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should parse this Award 1`] = `
+{
+  "date": 2014-01-01T00:00:00.000Z,
+  "issuer": {
+    "name": "Parts Unlimited",
+  },
+  "location": {
+    "address": "Phoenix, AZ",
+    "countryCode": "US",
+  },
+  "summary": "Awarded for outstanding leadership during the digital transformation of Parts Unlimited's IT operations. Recognized for stabilizing critical systems and fostering DevOps adoption.",
+  "tags": [
+    "Leadership",
+    "IT Operations",
+    "DevOps",
+  ],
+  "title": "IT Leadership Excellence Award",
+}
+`;
