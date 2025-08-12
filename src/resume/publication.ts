@@ -17,7 +17,7 @@ export namespace Publication {
 		name: ProperNoun.FromString,
 		publisher: optional(Organization.Schema),
 		date: Day.FromString,
-		summary: optional(Summary.FromString),
+		summary: Summary.FromString,
 		tags: optional(ArraySchema(Tag.FromString)),
 		type: optional(PublicationType),
 		url: optional(Url.FromString),
