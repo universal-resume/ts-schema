@@ -3,9 +3,6 @@
 exports[`should parse this Basics 1`] = `
 {
   "birth": 1975-08-12T00:00:00.000Z,
-  "driverLicenses": [
-    "B",
-  ],
   "headline": "Vice President of IT Operations",
   "location": {
     "address": "123 Enterprise Blvd",

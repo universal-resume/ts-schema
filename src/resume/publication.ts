@@ -8,7 +8,7 @@ import {
 	Url,
 } from "#value-object";
 import { Doi } from "./publication/doi.js";
-import { PublicationType } from "./publication/type.js";
+import { Type } from "./publication/type.js";
 
 export namespace Publication {
 	export const Schema = Struct({
@@ -19,7 +19,7 @@ export namespace Publication {
 		date: Day.FromString,
 		summary: Summary.FromString,
 		tags: optional(ArraySchema(Tag.FromString)),
-		type: optional(PublicationType),
+		type: Type,
 		url: optional(Url.FromString),
 	});
 

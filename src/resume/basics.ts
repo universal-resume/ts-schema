@@ -1,9 +1,4 @@
-import {
-	Array as ArraySchema,
-	NonEmptyTrimmedString,
-	optional,
-	Struct,
-} from "effect/Schema";
+import { Array as ArraySchema, optional, Struct } from "effect/Schema";
 import {
 	Contact,
 	CountryCode,
@@ -14,15 +9,17 @@ import {
 	Summary,
 	Url,
 } from "#value-object";
-import { DriverLicense } from "./basics/driver-license.js";
+import { Availability } from "./basics/availability.js";
+import { DrivingLicense } from "./basics/driving-license.js";
 import { Headline } from "./basics/headline.js";
 import { Remote } from "./basics/remote.js";
+import { Website } from "./basics/website.js";
 
 export namespace Basics {
 	export const Schema = Struct({
-		availability: optional(NonEmptyTrimmedString),
+		availability: optional(Availability),
 		birth: optional(Day.FromString),
-		driverLicenses: optional(ArraySchema(DriverLicense)),
+		drivingLicenses: optional(ArraySchema(DrivingLicense)),
 		contact: optional(Contact.Schema),
 		headline: Headline,
 		picture: optional(Url.FromString),
@@ -31,9 +28,7 @@ export namespace Basics {
 		nationalities: optional(ArraySchema(CountryCode.FromString)),
 		profiles: optional(ArraySchema(Profile.Schema)),
 		summary: optional(Summary.FromString),
-		website: optional(Url.FromString).annotations({
-			description: "The personal website, portfolio or blog of resume subject",
-		}),
+		website: optional(Website),
 		remote: optional(Remote),
 	});
 

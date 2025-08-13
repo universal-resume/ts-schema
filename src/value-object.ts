@@ -8,6 +8,7 @@ export * from "./value-object/organization.js";
 export * from "./value-object/position.js";
 export * from "./value-object/profile.js";
 export * from "./value-object/proper-noun.js";
+export * from "./value-object/reference.js";
 export * from "./value-object/score.js";
 export * from "./value-object/summary.js";
 export * from "./value-object/tag.js";

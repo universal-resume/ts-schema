@@ -6,14 +6,15 @@ import {
 	Organization,
 	Position,
 	ProperNoun,
+	Reference,
 	Summary,
 	Tag,
 	Url,
 } from "#value-object";
-import { Status } from "./project/status.js";
-import { Type } from "./project/type.js";
+import { Status } from "./initiative/status.js";
+import { Type } from "./initiative/type.js";
 
-export namespace Project {
+export namespace Initiative {
 	export const Schema = Struct({
 		summary: Summary.FromString,
 		endDate: optional(Day.FromString),
@@ -22,10 +23,11 @@ export namespace Project {
 		location: optional(Location.Schema),
 		name: ProperNoun.FromString,
 		position: Position.FromString,
+		references: optional(ArraySchema(Reference.Schema)),
 		startDate: Day.FromString,
 		status: optional(Status),
 		tags: optional(ArraySchema(Tag.FromString)),
-		type: optional(Type),
+		type: Type,
 		url: optional(Url.FromString),
 	});
 

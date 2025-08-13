@@ -6,10 +6,7 @@ export namespace Contact {
 	export const Schema = Struct({
 		email: optional(Email.FromString),
 		phone: optional(NonEmptyString),
-		discord: optional(NonEmptyString),
-		telegram: optional(NonEmptyString),
-		linkedin: optional(NonEmptyString),
-		website: optional(Url.FromString),
+		linkedin: optional(Url.FromString),
 	}).annotations({
 		identifier: "Contact",
 		description: "Some ways to contact a person",
@@ -17,7 +14,6 @@ export namespace Contact {
 			{
 				email: Email.Brand.make("john.doe@google.com"),
 				phone: "+1234567890",
-				website: Url.Brand.make(new URL("https://linkedin.com/in/john-doe")),
 			},
 		],
 	});

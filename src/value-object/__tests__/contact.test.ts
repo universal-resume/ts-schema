@@ -7,14 +7,11 @@ it("validates a full contact", () => {
 	const input = {
 		email: "test@example.com",
 		phone: "+1234567890",
-		discord: "test",
-		telegram: "test",
-		linkedin: "test",
-		website: "https://example.com",
+		linkedin: "https://example.com",
 	};
 	expect(Effect.runSync(Schema.decode(Contact.Schema)(input))).toEqual({
 		...input,
-		website: new URL("https://example.com"),
+		linkedin: new URL("https://example.com"),
 	});
 });
 
@@ -26,7 +23,7 @@ it("validates an only email contact", () => {
 });
 
 it("invalidates an incorrect contact with an additional property", () => {
-	const input = { foo: "bar" } as Omit<Contact.Type, "website">;
+	const input = { foo: "bar" } as Omit<Contact.Type, "linkedin">;
 	expect(
 		Exit.isFailure(
 			Effect.runSyncExit(
