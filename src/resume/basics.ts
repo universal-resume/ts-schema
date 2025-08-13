@@ -1,4 +1,9 @@
-import { Array as ArraySchema, optional, Struct } from "effect/Schema";
+import {
+	Array as ArraySchema,
+	NonEmptyTrimmedString,
+	optional,
+	Struct,
+} from "effect/Schema";
 import {
 	Contact,
 	CountryCode,
@@ -15,6 +20,7 @@ import { Remote } from "./basics/remote.js";
 
 export namespace Basics {
 	export const Schema = Struct({
+		availability: optional(NonEmptyTrimmedString),
 		birth: optional(Day.FromString),
 		driverLicenses: optional(ArraySchema(DriverLicense)),
 		contact: optional(Contact.Schema),
