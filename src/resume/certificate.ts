@@ -1,11 +1,19 @@
 import { Array as ArraySchema, optional, Struct } from "effect/Schema";
-import { Day, Organization, ProperNoun, Tag, Url } from "#value-object";
+import {
+	Day,
+	Organization,
+	ProperNoun,
+	Summary,
+	Tag,
+	Url,
+} from "#value-object";
 
 export namespace Certificate {
 	export const Schema = Struct({
 		date: Day.FromString,
 		issuer: Organization.Schema,
 		name: ProperNoun.FromString,
+		summary: optional(Summary.FromString),
 		url: optional(Url.FromString),
 		tags: optional(ArraySchema(Tag.FromString)),
 	});
