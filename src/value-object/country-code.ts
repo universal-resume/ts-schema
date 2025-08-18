@@ -5,7 +5,7 @@ export namespace CountryCode {
 	const AsString = Schema.NonEmptyString.annotations({
 		identifier: "CountryCode",
 		description: "Country code in ISO 3166-1 alpha-2 format",
-		examples: ["US", "UK", "FR", "DE", "IT", "ES"],
+		examples: ["US", "GB", "FR", "DE", "IT", "ES"],
 	});
 
 	export const Brand = Schema.Uppercase.pipe(

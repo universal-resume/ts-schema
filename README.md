@@ -1,82 +1,89 @@
 # ts-schema
 
-An Effect based typescript implementation of the [universal-resume schema](https://github.com/universal-resume/json-schema), including structures, validation and typing
-
-The schema is inspired by the [json-resume](https://github.com/jsonresume) organization adding required fields and a few other improvements.
+An [Effect](https://effect.website)-based TypeScript implementation of the [universal-resume schema](https://github.com/universal-resume/json-schema).  
+It provides **runtime validation** and **static typing** for working with resumes in TypeScript.  
 
 ## Installation
-In your Typescript project, run : `npm i @universal-resume/ts-schema`
+Add the package to your TypeScript project:  
 
-**Note**: This package requires `effect` as a peer dependency. If you don't have it installed, run: `npm i effect`
+```sh
+npm i @universal-resume/ts-schema
+```
+
+**Note**: This package requires `effect` as a peer dependency.
+If you don't have it installed, run: `npm i effect`
 
 ## Dependencies
 - **Required**: `effect` (peer dependency)
 - **Optional**: `typescript` (for type definitions)
 
-## How to use
+## Usage
 ```ts
 import { Resume } from "@universal-resume/ts-schema";
-
-// Only for third option, be sure to `npm i effect`
+// For Effect-style decoding (Option 3)
 import { Schema } from "effect";
 
 const input: unknown = {
-    basics: {
-        name: "John Doe",
-        headline: "Software Engineer",
-        email: "john.doe@example.com",
-        phone: "+1-555-0123",
-        location: {
-            city: "San Francisco",
-            country: "USA"
-        }
-    },
-    work: [
-        {
-            company: "Tech Corp",
-            position: "Senior Developer",
-            startDate: "2020-01",
-            endDate: "2023-12",
-            summary: "Led development of key features"
-        }
-    ],
-    education: [
-        {
-            institution: "University of Technology",
-            degree: "Bachelor of Science",
-            field: "Computer Science",
-            startDate: "2016-09",
-            endDate: "2020-05"
-        }
-    ]
-}
+  basics: {
+    name: "John Doe",
+    headline: "Software Engineer",
+    email: "john.doe@example.com",
+    phone: "+1-555-0123",
+    location: {
+      city: "San Francisco",
+      country: "USA"
+    }
+  },
+  employments: [
+    {
+      organization: {
+        name: "Example Company"
+      },
+      position: "Senior Developer",
+      startDate: "2020-01",
+      endDate: "2023-12",
+      summary: "Led development of key features"
+    }
+  ],
+  education: [
+    {
+      organization: {
+        name: "University of Technology"
+      },
+      type: "Bachelor of Science",
+      area: "Computer Science",
+      startDate: "2016-09",
+      endDate: "2020-05"
+    }
+  ]
+};
 
-// OPTION 1 : Sync way
+// OPTION 1: Synchronous decoding
 try {
-    const result: Resume.Type = Resume.decodeSync(input);
-    console.log("Valid resume:", result);
+  const result: Resume.Type = Resume.decodeSync(input);
+  console.log("Valid resume:", result);
 } catch (error) {
-    console.error("Validation failed:", error);
+  console.error("Validation failed:", error);
 }
 
-// OPTION 2 : Async way
+// OPTION 2: Asynchronous decoding
 Resume.decodeAsync(input)
-    .then((resume: Resume.Type) => {
-        console.log("Valid resume:", resume);
-    })
-    .catch((error) => {
-        console.error("Validation failed:", error);
-    });
+  .then((resume: Resume.Type) => {
+    console.log("Valid resume:", resume);
+  })
+  .catch((error) => {
+    console.error("Validation failed:", error);
+  });
 
-// OPTION 3 : Effect way
+// OPTION 3: Effect-based decoding
 const effect = Schema.decodeUnknown(Resume.Schema)(input);
 const result = Schema.runSync(effect);
 console.log("Valid resume:", result);
 ```
 
-## How to contribute
-- If you consider this schema can be improved, feel free to create an issue and let's discuss about it.
-- If you spot a bug, missing test, typo, etc. just raise a pull request.
+## Contributing
+- 💡 Think the schema can be improved? Open an issue so we can discuss it.
+- 🐛 Found a bug, missing test, or typo? Submit a pull request — contributions are very welcome!
 
 ## License
 [MIT](./LICENSE)
