@@ -1,10 +1,12 @@
-import { Effect } from "effect/index";
+import { Effect } from "effect";
 import {
 	Array as ArraySchema,
 	decodeUnknown,
+	decodeUnknownSync,
 	optional,
 	Struct,
 } from "effect/Schema";
+import type { ParseOptions } from "effect/SchemaAST";
 import { Award } from "./resume/award.js";
 import { Basics } from "./resume/basics.js";
 import { Certificate } from "./resume/certificate.js";
@@ -56,10 +58,11 @@ namespace Resume {
 
 	export type Type = typeof Schema.Type;
 
-	export const decodeSync = (json: unknown) =>
-		Effect.runSync(decodeUnknown(Schema)(json));
-	export const decodeAsync = (json: unknown) =>
-		Effect.runPromise(decodeUnknown(Schema)(json));
+	export const decodeAsync = (json: unknown, options?: ParseOptions) =>
+		decodeUnknown(Schema, options)(json).pipe(Effect.runPromise);
+
+	export const decodeSync = (json: unknown, options?: ParseOptions) =>
+		decodeUnknownSync(Schema, options)(json);
 }
 
 export {
