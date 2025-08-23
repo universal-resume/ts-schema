@@ -15,7 +15,7 @@
         "#value-object": "./dist/value-object.js"
     },
     "scripts": {
-        "build": "tsc",
+        "build": "tsc --project tsconfig.build.json",
         "check": "biome check .",
         "format": "biome format . --write",
         "lint": "biome lint .",
