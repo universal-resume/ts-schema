@@ -1,4 +1,4 @@
-import { Array as ArraySchema, optional, Struct } from "effect/Schema";
+import { Array as ArraySchema, optionalWith, Struct } from "effect/Schema";
 import {
 	Day,
 	Highlight,
@@ -15,16 +15,16 @@ import { Type } from "./employment/type.js";
 export namespace Employment {
 	export const Schema = Struct({
 		type: Type,
-		summary: optional(Summary.FromString),
-		endDate: optional(Day.FromString),
-		highlights: optional(ArraySchema(Highlight.FromString)),
-		location: optional(Location.Schema),
+		summary: optionalWith(Summary.FromString, { exact: true }),
+		endDate: optionalWith(Day.FromString, { exact: true }),
+		highlights: optionalWith(ArraySchema(Highlight.FromString), { exact: true }),
+		location: optionalWith(Location.Schema, { exact: true }),
 		organization: Organization.Schema,
 		position: Position.FromString,
-		references: optional(ArraySchema(Reference.Schema)),
+		references: optionalWith(ArraySchema(Reference.Schema), { exact: true }),
 		startDate: Day.FromString,
-		tags: optional(ArraySchema(Tag.FromString)),
-		url: optional(Url.FromString),
+		tags: optionalWith(ArraySchema(Tag.FromString), { exact: true }),
+		url: optionalWith(Url.FromString, { exact: true }),
 	});
 
 	export type Type = typeof Schema.Type;

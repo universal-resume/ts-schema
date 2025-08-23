@@ -1,10 +1,10 @@
-import { NonEmptyString, optional, Struct } from "effect/Schema";
+import { NonEmptyString, optionalWith, Struct } from "effect/Schema";
 import { ProperNoun, Summary } from "#value-object";
 
 export const Course = Struct({
-	summary: optional(Summary.FromString),
+	summary: optionalWith(Summary.FromString, { exact: true }),
 	name: ProperNoun.FromString,
-	format: optional(NonEmptyString).annotations({
+	format: optionalWith(NonEmptyString, { exact: true }).annotations({
 		description: "The format or delivery mode",
 		examples: ["Online bootcamp", "In-person", "etc"],
 	}),

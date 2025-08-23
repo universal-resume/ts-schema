@@ -1,12 +1,12 @@
-import { optional, Struct } from "effect/Schema";
+import { optionalWith, Struct } from "effect/Schema";
 import { Day, Url } from "#value-object";
 import { ResumeSchema } from "./meta/schema.js";
 
 export namespace Meta {
 	export const Schema = Struct({
-		canonical: optional(Url.FromString),
-		lastModified: optional(Day.FromString),
-		schema: optional(ResumeSchema),
+		canonical: optionalWith(Url.FromString, { exact: true }),
+		lastModified: optionalWith(Day.FromString, { exact: true }),
+		schema: optionalWith(ResumeSchema, { exact: true }),
 	});
 
 	export type Type = typeof Schema.Type;

@@ -1,4 +1,4 @@
-import { Array as ArraySchema, optional, Struct } from "effect/Schema";
+import { Array as ArraySchema, optionalWith, Struct } from "effect/Schema";
 import {
 	Contact,
 	CountryCode,
@@ -17,19 +17,19 @@ import { Website } from "./basics/website.js";
 
 export namespace Basics {
 	export const Schema = Struct({
-		availability: optional(Availability),
-		birth: optional(Day.FromString),
-		drivingLicenses: optional(ArraySchema(DrivingLicense)),
-		contact: optional(Contact.Schema),
+		availability: optionalWith(Availability, { exact: true }),
+		birth: optionalWith(Day.FromString, { exact: true }),
+		drivingLicenses: optionalWith(ArraySchema(DrivingLicense), { exact: true }),
+		contact: optionalWith(Contact.Schema, { exact: true }),
 		headline: Headline,
-		picture: optional(Url.FromString),
-		location: optional(Location.Schema),
+		picture: optionalWith(Url.FromString, { exact: true }),
+		location: optionalWith(Location.Schema, { exact: true }),
 		name: ProperNoun.FromString,
-		nationalities: optional(ArraySchema(CountryCode.FromString)),
-		profiles: optional(ArraySchema(Profile.Schema)),
-		summary: optional(Summary.FromString),
-		website: optional(Website),
-		remote: optional(Remote),
+		nationalities: optionalWith(ArraySchema(CountryCode.FromString), { exact: true }),
+		profiles: optionalWith(ArraySchema(Profile.Schema), { exact: true }),
+		summary: optionalWith(Summary.FromString, { exact: true }),
+		website: optionalWith(Website, { exact: true }),
+		remote: optionalWith(Remote, { exact: true }),
 	});
 
 	export type Type = typeof Schema.Type;

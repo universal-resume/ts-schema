@@ -1,4 +1,4 @@
-import { Array as ArraySchema, optional, Struct } from "effect/Schema";
+import { Array as ArraySchema, optionalWith, Struct } from "effect/Schema";
 import {
 	Day,
 	Organization,
@@ -13,9 +13,9 @@ export namespace Certificate {
 		date: Day.FromString,
 		issuer: Organization.Schema,
 		name: ProperNoun.FromString,
-		summary: optional(Summary.FromString),
-		url: optional(Url.FromString),
-		tags: optional(ArraySchema(Tag.FromString)),
+		summary: optionalWith(Summary.FromString, { exact: true }),
+		url: optionalWith(Url.FromString, { exact: true }),
+		tags: optionalWith(ArraySchema(Tag.FromString), { exact: true }),
 	});
 
 	export type Type = typeof Schema.Type;

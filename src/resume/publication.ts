@@ -1,4 +1,4 @@
-import { Array as ArraySchema, optional, Struct } from "effect/Schema";
+import { Array as ArraySchema, optionalWith, Struct } from "effect/Schema";
 import {
 	Day,
 	Organization,
@@ -12,15 +12,15 @@ import { Type } from "./publication/type.js";
 
 export namespace Publication {
 	export const Schema = Struct({
-		authors: optional(ArraySchema(ProperNoun.FromString)),
-		doi: optional(Doi),
+		authors: optionalWith(ArraySchema(ProperNoun.FromString), { exact: true }),
+		doi: optionalWith(Doi, { exact: true }),
 		name: ProperNoun.FromString,
-		publisher: optional(Organization.Schema),
+		publisher: optionalWith(Organization.Schema, { exact: true }),
 		date: Day.FromString,
 		summary: Summary.FromString,
-		tags: optional(ArraySchema(Tag.FromString)),
+		tags: optionalWith(ArraySchema(Tag.FromString), { exact: true }),
 		type: Type,
-		url: optional(Url.FromString),
+		url: optionalWith(Url.FromString, { exact: true }),
 	});
 
 	export type Type = typeof Schema.Type;
