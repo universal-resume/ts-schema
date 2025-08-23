@@ -4,6 +4,7 @@ import {
 	decodeUnknown,
 	decodeUnknownSync,
 	optional,
+	optionalWith,
 	Struct,
 } from "effect/Schema";
 import type { ParseOptions } from "effect/SchemaAST";
@@ -21,37 +22,37 @@ import { Skill } from "./resume/skill.js";
 
 namespace Resume {
 	export const Schema = Struct({
-		awards: optional(ArraySchema(Award.Schema)).annotations({
+		awards: optionalWith(ArraySchema(Award.Schema), { exact: true }).annotations({
 			identifier: "awards",
 		}),
 		basics: Basics.Schema.annotations({
 			identifier: "basics",
 		}),
-		certificates: optional(ArraySchema(Certificate.Schema)).annotations({
+		certificates: optionalWith(ArraySchema(Certificate.Schema), { exact: true }).annotations({
 			identifier: "certificates",
 		}),
-		education: optional(ArraySchema(Education.Schema)).annotations({
+		education: optionalWith(ArraySchema(Education.Schema), { exact: true }).annotations({
 			identifier: "education",
 		}),
-		interests: optional(ArraySchema(Interest.Schema)).annotations({
+		interests: optionalWith(ArraySchema(Interest.Schema), { exact: true }).annotations({
 			identifier: "interests",
 		}),
-		languages: optional(ArraySchema(Language.Schema)).annotations({
+		languages: optionalWith(ArraySchema(Language.Schema), { exact: true }).annotations({
 			identifier: "languages",
 		}),
-		meta: optional(Meta.Schema).annotations({
+		meta: optionalWith(Meta.Schema, { exact: true }).annotations({
 			identifier: "meta",
 		}),
-		initiatives: optional(ArraySchema(Initiative.Schema)).annotations({
+		initiatives: optionalWith(ArraySchema(Initiative.Schema), { exact: true }).annotations({
 			identifier: "initiatives",
 		}),
-		publications: optional(ArraySchema(Publication.Schema)).annotations({
+		publications: optionalWith(ArraySchema(Publication.Schema), { exact: true }).annotations({
 			identifier: "publications",
 		}),
-		skills: optional(ArraySchema(Skill.Schema)).annotations({
+		skills: optionalWith(ArraySchema(Skill.Schema), { exact: true }).annotations({
 			identifier: "skills",
 		}),
-		employments: optional(ArraySchema(Employment.Schema)).annotations({
+		employments: optionalWith(ArraySchema(Employment.Schema), { exact: true }).annotations({
 			identifier: "employments",
 		}),
 	});

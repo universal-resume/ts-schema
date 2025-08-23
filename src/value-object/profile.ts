@@ -1,4 +1,4 @@
-import { Literal, NonEmptyString, optional, Struct } from "effect/Schema";
+import { Literal, NonEmptyString, optionalWith, Struct } from "effect/Schema";
 import { Url } from "./url.js";
 
 const Username = NonEmptyString.annotations({
@@ -19,7 +19,7 @@ export namespace Profile {
 			"Tiktok",
 		),
 		url: Url.FromString,
-		username: optional(Username),
+		username: optionalWith(Username, { exact: true }),
 	}).annotations({
 		identifier: "Profile",
 		description:

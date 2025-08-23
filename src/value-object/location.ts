@@ -1,14 +1,14 @@
-import { NonEmptyString, optional, Struct } from "effect/Schema";
+import { NonEmptyString, optionalWith, Struct } from "effect/Schema";
 import { CountryCode } from "./country-code.js";
 import { ProperNoun } from "./proper-noun.js";
 
 export namespace Location {
 	export const Schema = Struct({
-		address: optional(NonEmptyString),
-		city: optional(ProperNoun.FromString),
-		countryCode: optional(CountryCode.FromString),
-		postalCode: optional(NonEmptyString),
-		region: optional(NonEmptyString),
+		address: optionalWith(NonEmptyString, { exact: true }),
+		city: optionalWith(ProperNoun.FromString, { exact: true }),
+		countryCode: optionalWith(CountryCode.FromString, { exact: true }),
+		postalCode: optionalWith(NonEmptyString, { exact: true }),
+		region: optionalWith(NonEmptyString, { exact: true }),
 	}).annotations({
 		identifier: "Location",
 		description:

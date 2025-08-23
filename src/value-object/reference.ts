@@ -1,14 +1,14 @@
-import { optional, Struct } from "effect/Schema";
+import { optionalWith, Struct } from "effect/Schema";
 import { Contact, Day, Position, ProperNoun } from "#value-object";
 import { Testamonial } from "../resume/reference/testamonial.js";
 
 export namespace Reference {
 	export const Schema = Struct({
-		contact: optional(Contact.Schema),
+		contact: optionalWith(Contact.Schema, { exact: true }),
 		date: Day.FromString,
 		name: ProperNoun.FromString,
-		position: optional(Position.FromString),
-		testimonial: optional(Testamonial),
+		position: optionalWith(Position.FromString, { exact: true }),
+		testimonial: optionalWith(Testamonial, { exact: true }),
 	});
 
 	export type Type = typeof Schema.Type;

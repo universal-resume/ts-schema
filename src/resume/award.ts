@@ -1,4 +1,4 @@
-import { Array as ArraySchema, optional, Struct } from "effect/Schema";
+import { Array as ArraySchema, optionalWith, Struct } from "effect/Schema";
 import {
 	Day,
 	Location,
@@ -13,9 +13,9 @@ export namespace Award {
 		title: ProperNoun.FromString,
 		issuer: Organization.Schema,
 		date: Day.FromString,
-		location: optional(Location.Schema),
-		summary: optional(Summary.FromString),
-		tags: optional(ArraySchema(Tag.FromString)),
+		location: optionalWith(Location.Schema, { exact: true }),
+		summary: optionalWith(Summary.FromString, { exact: true }),
+		tags: optionalWith(ArraySchema(Tag.FromString), { exact: true }),
 	});
 
 	export type Type = typeof Schema.Type;

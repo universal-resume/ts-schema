@@ -1,12 +1,12 @@
-import { NonEmptyString, optional, Struct } from "effect/Schema";
+import { NonEmptyString, optionalWith, Struct } from "effect/Schema";
 import { Email } from "./email.js";
 import { Url } from "./url.js";
 
 export namespace Contact {
 	export const Schema = Struct({
-		email: optional(Email.FromString),
-		phone: optional(NonEmptyString),
-		linkedin: optional(Url.FromString),
+		email: optionalWith(Email.FromString, { exact: true }),
+		phone: optionalWith(NonEmptyString, { exact: true }),
+		linkedin: optionalWith(Url.FromString, { exact: true }),
 	}).annotations({
 		identifier: "Contact",
 		description: "Some ways to contact a person",
