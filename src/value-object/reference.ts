@@ -9,6 +9,8 @@ export namespace Reference {
 		name: ProperNoun.FromString,
 		position: optionalWith(Position.FromString, { exact: true }),
 		testimonial: optionalWith(Testamonial, { exact: true }),
+	}).annotations({
+		identifier: "Reference",
 	});
 
 	export type Type = typeof Schema.Type;

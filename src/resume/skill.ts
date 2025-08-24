@@ -9,6 +9,8 @@ export namespace Skill {
 		name: ProperNoun.FromString,
 		tags: optionalWith(ArraySchema(Tag.FromString), { exact: true }),
 		yearsOfExperience: optionalWith(YearsOfExperience, { exact: true }),
+	}).annotations({
+		identifier: "Skill",
 	});
 
 	export type Type = typeof Schema.Type;

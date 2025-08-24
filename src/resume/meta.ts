@@ -7,6 +7,8 @@ export namespace Meta {
 		canonical: optionalWith(Url.FromString, { exact: true }),
 		lastModified: optionalWith(Day.FromString, { exact: true }),
 		schema: optionalWith(ResumeSchema, { exact: true }),
+	}).annotations({
+		identifier: "Meta",
 	});
 
 	export type Type = typeof Schema.Type;

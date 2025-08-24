@@ -6,6 +6,8 @@ export namespace Interest {
 		summary: optionalWith(Summary.FromString, { exact: true }),
 		name: ProperNoun.FromString,
 		tags: optionalWith(ArraySchema(Tag.FromString), { exact: true }),
+	}).annotations({
+		identifier: "Interest",
 	});
 
 	export type Type = typeof Schema.Type;

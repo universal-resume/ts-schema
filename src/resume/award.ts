@@ -16,6 +16,8 @@ export namespace Award {
 		location: optionalWith(Location.Schema, { exact: true }),
 		summary: optionalWith(Summary.FromString, { exact: true }),
 		tags: optionalWith(ArraySchema(Tag.FromString), { exact: true }),
+	}).annotations({
+		identifier: "Award",
 	});
 
 	export type Type = typeof Schema.Type;
