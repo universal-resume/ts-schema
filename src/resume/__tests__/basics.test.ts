@@ -19,7 +19,7 @@ it("should parse this Basics", () => {
 			countryCode: "US",
 		},
 		nationalities: ["US"],
-		driverLicenses: ["B"],
+		drivingLicenses: ["B"],
 		picture: "https://example.com/images/bill-palmer.jpg",
 		profiles: [
 			{
