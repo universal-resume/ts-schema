@@ -17,7 +17,9 @@ export namespace Employment {
 		type: Type,
 		summary: optionalWith(Summary.FromString, { exact: true }),
 		endDate: optionalWith(Day.FromString, { exact: true }),
-		highlights: optionalWith(ArraySchema(Highlight.FromString), { exact: true }),
+		highlights: optionalWith(ArraySchema(Highlight.FromString), {
+			exact: true,
+		}),
 		location: optionalWith(Location.Schema, { exact: true }),
 		organization: Organization.Schema,
 		position: Position.FromString,
@@ -25,6 +27,8 @@ export namespace Employment {
 		startDate: Day.FromString,
 		tags: optionalWith(ArraySchema(Tag.FromString), { exact: true }),
 		url: optionalWith(Url.FromString, { exact: true }),
+	}).annotations({
+		identifier: "Employment",
 	});
 
 	export type Type = typeof Schema.Type;

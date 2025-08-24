@@ -22,6 +22,8 @@ export namespace Education {
 		startDate: Day.FromString,
 		type: StudyType,
 		url: optionalWith(Url.FromString, { exact: true }),
+	}).annotations({
+		identifier: "Education",
 	});
 
 	export type Type = typeof Schema.Type;

@@ -21,6 +21,8 @@ export namespace Publication {
 		tags: optionalWith(ArraySchema(Tag.FromString), { exact: true }),
 		type: Type,
 		url: optionalWith(Url.FromString, { exact: true }),
+	}).annotations({
+		identifier: "Publication",
 	});
 
 	export type Type = typeof Schema.Type;

@@ -19,7 +19,9 @@ export namespace Initiative {
 		summary: Summary.FromString,
 		endDate: optionalWith(Day.FromString, { exact: true }),
 		organization: optionalWith(Organization.Schema, { exact: true }),
-		highlights: optionalWith(ArraySchema(Highlight.FromString), { exact: true }),
+		highlights: optionalWith(ArraySchema(Highlight.FromString), {
+			exact: true,
+		}),
 		location: optionalWith(Location.Schema, { exact: true }),
 		name: ProperNoun.FromString,
 		position: Position.FromString,
@@ -29,6 +31,8 @@ export namespace Initiative {
 		tags: optionalWith(ArraySchema(Tag.FromString), { exact: true }),
 		type: Type,
 		url: optionalWith(Url.FromString, { exact: true }),
+	}).annotations({
+		identifier: "Initiative",
 	});
 
 	export type Type = typeof Schema.Type;

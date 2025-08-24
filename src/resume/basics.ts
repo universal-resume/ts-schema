@@ -25,11 +25,15 @@ export namespace Basics {
 		picture: optionalWith(Url.FromString, { exact: true }),
 		location: optionalWith(Location.Schema, { exact: true }),
 		name: ProperNoun.FromString,
-		nationalities: optionalWith(ArraySchema(CountryCode.FromString), { exact: true }),
+		nationalities: optionalWith(ArraySchema(CountryCode.FromString), {
+			exact: true,
+		}),
 		profiles: optionalWith(ArraySchema(Profile.Schema), { exact: true }),
 		summary: optionalWith(Summary.FromString, { exact: true }),
 		website: optionalWith(Website, { exact: true }),
 		remote: optionalWith(Remote, { exact: true }),
+	}).annotations({
+		identifier: "Basics",
 	});
 
 	export type Type = typeof Schema.Type;

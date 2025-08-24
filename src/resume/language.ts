@@ -10,6 +10,8 @@ export namespace Language {
 		fluency: optionalWith(Fluency, { exact: true }),
 		name: ProperNoun.FromString,
 		countryCode: optionalWith(CountryCode.FromString, { exact: true }),
+	}).annotations({
+		identifier: "Language",
 	});
 
 	export type Type = typeof Schema.Type;

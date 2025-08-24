@@ -1,13 +1,4 @@
-import { Effect } from "effect";
-import {
-	Array as ArraySchema,
-	decodeUnknown,
-	decodeUnknownSync,
-	optional,
-	optionalWith,
-	Struct,
-} from "effect/Schema";
-import type { ParseOptions } from "effect/SchemaAST";
+import { Effect, Schema as EffectSchema, type SchemaAST } from "effect";
 import { Award } from "./resume/award.js";
 import { Basics } from "./resume/basics.js";
 import { Certificate } from "./resume/certificate.js";
@@ -21,49 +12,56 @@ import { Publication } from "./resume/publication.js";
 import { Skill } from "./resume/skill.js";
 
 namespace Resume {
-	export const Schema = Struct({
-		awards: optionalWith(ArraySchema(Award.Schema), { exact: true }).annotations({
-			identifier: "awards",
+	export const Schema = EffectSchema.Struct({
+		awards: EffectSchema.optionalWith(EffectSchema.Array(Award.Schema), {
+			exact: true,
 		}),
-		basics: Basics.Schema.annotations({
-			identifier: "basics",
+		basics: Basics.Schema,
+		certificates: EffectSchema.optionalWith(
+			EffectSchema.Array(Certificate.Schema),
+			{
+				exact: true,
+			},
+		),
+		education: EffectSchema.optionalWith(EffectSchema.Array(Education.Schema), {
+			exact: true,
 		}),
-		certificates: optionalWith(ArraySchema(Certificate.Schema), { exact: true }).annotations({
-			identifier: "certificates",
+		interests: EffectSchema.optionalWith(EffectSchema.Array(Interest.Schema), {
+			exact: true,
 		}),
-		education: optionalWith(ArraySchema(Education.Schema), { exact: true }).annotations({
-			identifier: "education",
+		languages: EffectSchema.optionalWith(EffectSchema.Array(Language.Schema), {
+			exact: true,
 		}),
-		interests: optionalWith(ArraySchema(Interest.Schema), { exact: true }).annotations({
-			identifier: "interests",
+		meta: EffectSchema.optionalWith(Meta.Schema, { exact: true }),
+		initiatives: EffectSchema.optionalWith(
+			EffectSchema.Array(Initiative.Schema),
+			{ exact: true },
+		),
+		publications: EffectSchema.optionalWith(
+			EffectSchema.Array(Publication.Schema),
+			{ exact: true },
+		),
+		skills: EffectSchema.optionalWith(EffectSchema.Array(Skill.Schema), {
+			exact: true,
 		}),
-		languages: optionalWith(ArraySchema(Language.Schema), { exact: true }).annotations({
-			identifier: "languages",
-		}),
-		meta: optionalWith(Meta.Schema, { exact: true }).annotations({
-			identifier: "meta",
-		}),
-		initiatives: optionalWith(ArraySchema(Initiative.Schema), { exact: true }).annotations({
-			identifier: "initiatives",
-		}),
-		publications: optionalWith(ArraySchema(Publication.Schema), { exact: true }).annotations({
-			identifier: "publications",
-		}),
-		skills: optionalWith(ArraySchema(Skill.Schema), { exact: true }).annotations({
-			identifier: "skills",
-		}),
-		employments: optionalWith(ArraySchema(Employment.Schema), { exact: true }).annotations({
-			identifier: "employments",
-		}),
+		employments: EffectSchema.optionalWith(
+			EffectSchema.Array(Employment.Schema),
+			{ exact: true },
+		),
+	}).annotations({
+		identifier: "Resume",
 	});
 
 	export type Type = typeof Schema.Type;
 
-	export const decodeAsync = (json: unknown, options?: ParseOptions) =>
-		decodeUnknown(Schema, options)(json).pipe(Effect.runPromise);
+	export const decodeAsync = (
+		json: unknown,
+		options?: SchemaAST.ParseOptions,
+	) =>
+		EffectSchema.decodeUnknown(Schema, options)(json).pipe(Effect.runPromise);
 
-	export const decodeSync = (json: unknown, options?: ParseOptions) =>
-		decodeUnknownSync(Schema, options)(json);
+	export const decodeSync = (json: unknown, options?: SchemaAST.ParseOptions) =>
+		EffectSchema.decodeUnknownSync(Schema, options)(json);
 }
 
 export {
